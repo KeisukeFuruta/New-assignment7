@@ -1,6 +1,7 @@
 package org.example;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -64,7 +65,7 @@ public class Main {
         .filter(v -> v % 2 == 1)
         .collect(Collectors.averagingInt(Integer::intValue)) + "」点");
 
-    // 生成AIを使って、Stream APIの基礎的な課題を一つ作ってもらってください。
+    // 生成AIを使って、StreamAPIの基礎的な課題を一つ作ってもらってください。
     // それを実際に実装してみてください。
     // 問題文説明: 与えられたテキストから単語を抽出し、以下の操作を行います
     // すべての単語を小文字に変換します。
@@ -83,5 +84,21 @@ public class Main {
     wordsCount.entrySet().stream() /*Map型のwordsCountをentrySetメソッドを使うことによってStreamAPIを使えるようにした*/
         .sorted((e1, e2) -> Long.compare(e2.getValue(), e1.getValue()))
         .forEach(entry -> System.out.println(entry.getKey() + ":" + entry.getValue()));
+    System.out.println();
+
+    // もう一問追加
+    // 課題3: 文字列リストの処理
+    // 説明: 文字列のリストがあります。このリストから特定の条件を満たす文字列を抽出し、文字数順にソートして出力します。
+    // 手順:
+    // 文字列のリストを作成します。
+    // 文字数が4以上の文字列を抽出します。
+    // そのリストを文字数の昇順にソートします。
+    // 結果をコンソールに出力します
+    List<String> strings = Arrays.asList("apple", "banana", "pear", "kiwi", "grape");
+    System.out.println(strings.stream()
+        .filter(v -> v.length() > 2)
+        .sorted(Comparator.comparingInt(String::length))
+        .toList());
+    //comparatorで文字列の長さを比較
   }
 }
